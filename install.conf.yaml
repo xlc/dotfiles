@@ -1,3 +1,11 @@
-- clean: []
-- link: {}
-- shell: []
+--- 
+- 
+  clean: 
+    - "~"
+- 
+  link: 
+    ~/.bash_profile: bash_profile
+    ~/.slate: slate
+    ~/.vim: vim/
+    ~/.vimrc: vimrc
+
