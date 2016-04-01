@@ -49,15 +49,13 @@ function rmb {
   fi
 }
 
-export NACL_SDK_ROOT=/Users/bryanchen/Documents/projects/nacl_sdk/pepper_49
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-eval "$(docker-machine env default)"
-
-#export PATH="/Users/bryanchen/Documents/projects/depot_tools:$PATH"
-export JAVA_HOME="$(/usr/libexec/java_home)"
+#eval "$(docker-machine env default)"
+#export JAVA_HOME="$(/usr/libexec/java_home)"
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
+alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
