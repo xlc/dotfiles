@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/bryanchen/Documents/projects/naclports/ports'
 let g:netrw_dirhist_2='/Users/bryanchen/Documents/projects/notable/notablecworker/xcode'
 let g:netrw_dirhist_3='/usr/local/etc/nginx'
 let g:netrw_dirhist_4='/usr/local/etc'
 let g:netrw_dirhist_5='/usr/local/etc/nginx'
+let g:netrw_dirhist_6='/Users/bryan'

@@ -1,11 +1,17 @@
---- 
-- 
-  clean: 
+---
+-
+  clean:
     - "~"
-- 
-  link: 
+-
+  link:
     ~/.bash_profile: bash_profile
     ~/.slate: slate
     ~/.vim: vim/
     ~/.vimrc: vimrc
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
+    ~/scripts: scripts
 
+-
+  shell:
+    - git config --global core.excludesfile ~/.gitignore_global
