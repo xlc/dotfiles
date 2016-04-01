@@ -16,7 +16,7 @@ if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
-PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\e[00;36m\]\w\[\e[0m\]$(__git_ps1)\[\033[00m\] \$ '
+PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\e[00;36m\]\W\[\e[0m\]$(__git_ps1)\[\033[00m\] \$ '
 function rmb {
   current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
   if [ "$current_branch" != "master" ]; then
@@ -49,3 +49,15 @@ function rmb {
   fi
 }
 
+export NACL_SDK_ROOT=/Users/bryanchen/Documents/projects/nacl_sdk/pepper_49
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+eval "$(docker-machine env default)"
+
+#export PATH="/Users/bryanchen/Documents/projects/depot_tools:$PATH"
+export JAVA_HOME="$(/usr/libexec/java_home)"
+
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
