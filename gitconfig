@@ -5,3 +5,14 @@
 	email = xlchen1291@gmail.com
 [core]
 	excludesfile = /Users/bryan/.gitignore_global
+	editor = /usr/bin/vim
+[filter "lfs"]
+	smudge = git-lfs smudge %f
+	required = true
+	clean = git-lfs clean %f
+[difftool "sourcetree"]
+	cmd = "sublime "
+	path = 
+[mergetool "sourcetree"]
+	cmd = "sublime "
+	trustExitCode = true
