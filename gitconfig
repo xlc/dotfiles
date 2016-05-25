@@ -16,3 +16,5 @@
 [mergetool "sourcetree"]
 	cmd = "sublime "
 	trustExitCode = true
+[alias]
+	up = !git fetch && git rebase --autostash FETCH_HEAD
