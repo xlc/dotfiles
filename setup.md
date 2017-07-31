@@ -28,7 +28,6 @@
 
 ## brew cask
 
-macvim
 qlimagesize
 qlstephen
 mattr-slate
@@ -57,5 +56,3 @@ vim
 wine
 yarn
 ykpers
-
-
