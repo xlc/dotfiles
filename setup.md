@@ -61,3 +61,10 @@ ykpers
 
 lunchy
 cocoapods
+
+## yarn global
+
+node-gyp
+speed-test
+gulp
+surge
