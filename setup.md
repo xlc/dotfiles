@@ -56,3 +56,8 @@ vim
 wine
 yarn
 ykpers
+
+## gem
+
+lunchy
+cocoapods
