@@ -57,8 +57,6 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 
 alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
-export PATH="$PATH:$(yarn global bin):$HOME/.config/yarn/global/node_modules/.bin"
-
 if [ -f "${HOME}/.gpg-agent-info" ]; then
   . "${HOME}/.gpg-agent-info"
   export GPG_AGENT_INFO
