@@ -71,3 +71,5 @@ if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
 fi
 
 eval "$(thefuck --alias)"
+
+export HISTCONTROL=ignoreboth:erasedups
