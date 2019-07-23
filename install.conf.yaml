@@ -5,6 +5,7 @@
 -
   link:
     ~/.bash_profile: bash_profile
+    ~/.zshrc: zshrc
     ~/.slate: slate
     ~/.vim: vim/
     ~/.vimrc: vimrc
