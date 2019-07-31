@@ -4,7 +4,7 @@
 	name = Bryan Chen
 	email = xlchen1291@gmail.com
 [core]
-	excludesfile = /Users/bryan/.gitignore_global
+	excludesfile = /Users/xiliangchen/.gitignore_global
 	editor = /usr/bin/vim
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f

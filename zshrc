@@ -8,7 +8,7 @@ export ZSH="/Users/xiliangchen/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="risto"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +68,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(cargo docker thefuck gitfast)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,7 +98,48 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+function rmb {
+  current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  if [ "$current_branch" != "master" ]; then
+    echo "WARNING: You are on branch $current_branch, NOT master."
+  fi
+    echo "Fetching merged branches..."
+  git remote prune origin
+  remote_branches=$(git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$")
+  local_branches=$(git branch --merged | grep -v 'master$' | grep -v "$current_branch$")
+  if [ -z "$remote_branches" ] && [ -z "$local_branches" ]; then
+    echo "No existing branches have been merged into $current_branch."
+  else
+    echo "This will remove the following branches:"
+    if [ -n "$remote_branches" ]; then
+      echo "$remote_branches"
+    fi
+    if [ -n "$local_branches" ]; then
+      echo "$local_branches"
+    fi
+    read -p "Continue? (y/n): " -n 1 choice
+    echo
+    if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
+      # Remove remote branches
+      git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
+      # Remove local branches
+      git branch -d `git branch --merged | grep -v 'master$' | grep -v "$current_branch$" | sed 's/origin\///g' | tr -d '\n'`
+    else
+      echo "No branches removed."
+    fi
+  fi
+}
+
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
 alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-eval "$(thefuck --alias)"
+alias masterup="git checkout master && git up && rmb"
+
+GIT_PS1_SHOWDIRTYSTATE=true
+
+# PS1='\033[32m\]\u@\h\[\033[00m\]:\[\e[00;36m\]\W\[\e[0m\]$(__git_ps1)\[\033[00m\] \$ '
+PROMPT='%{$fg[green]%}%n@%m:%{$fg_bold[blue]%}%2~%{$FG[250]%}$(__git_ps1) %{$reset_color%}%(!.#.$) '
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
