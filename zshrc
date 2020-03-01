@@ -117,9 +117,9 @@ function rmb {
     if [ -n "$local_branches" ]; then
       echo "$local_branches"
     fi
-    read -p "Continue? (y/n): " -n 1 choice
+    read -q "choice?Continue? (y/n): "
     echo
-    if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
+    if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
       # Remove remote branches
       git push origin `git branch -r --merged | grep -v '/master$' | grep -v "/$current_branch$" | sed 's/origin\//:/g' | tr -d '\n'`
       # Remove local branches
@@ -143,3 +143,14 @@ PROMPT='%{$fg[green]%}%n@%m:%{$fg_bold[blue]%}%2~%{$FG[250]%}$(__git_ps1) %{$res
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/xiliangchen/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/xiliangchen/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/xiliangchen/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/xiliangchen/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/xiliangchen/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/xiliangchen/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

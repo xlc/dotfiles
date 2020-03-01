@@ -67,3 +67,32 @@ eval "$(thefuck --alias)"
 
 export HISTCONTROL=ignoreboth:erasedups
 export PATH="$HOME/.cargo/bin:$PATH"
+
+alias masterup="git checkout master && git up && rmb"
+
+alias ghpr="gh pr create --web"
+
+export RUSTC_WRAPPER=sccache
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+function _makefile_targets {
+    local curr_arg;
+    local targets;
+
+    # Find makefile targets available in the current directory
+    targets=''
+    if [[ -e "$(pwd)/Makefile" ]]; then
+        targets=$( \
+            grep -oE '^[a-zA-Z0-9_-]+:' Makefile \
+            | sed 's/://' \
+            | tr '\n' ' ' \
+        )
+    fi
+
+    # Filter targets based on user input to the bash completion
+    curr_arg=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -W "${targets[@]}" -- $curr_arg ) );
+}
+
+complete -F _makefile_targets make
